@@ -1,0 +1,8 @@
+C:\Users\EL11_gazy\source\repos\Ecommerce_SSAS\Ecommerce_SSAS\bin\Model.asdatabase
+C:\Users\EL11_gazy\source\repos\Ecommerce_SSAS\Ecommerce_SSAS\bin\Model.deploymenttargets
+C:\Users\EL11_gazy\source\repos\Ecommerce_SSAS\Ecommerce_SSAS\bin\Model.deploymentoptions
+C:\Users\EL11_gazy\source\repos\Ecommerce_SSAS\Ecommerce_SSAS\obj\Development\Ecommerce_SSAS.smproj.AssemblyReference.cache
+C:\Users\EL11_gazy\source\repos\Ecommerce_SSAS\Ecommerce_SSAS\obj\Development\Ecommerce_SSAS.smproj.CoreCompileInputs.cache
+C:\Users\EL11_gazy\source\repos\Ecommerce_SSAS\Ecommerce_SSAS\obj\Development\Model.asdatabase
+C:\Users\EL11_gazy\source\repos\Ecommerce_SSAS\Ecommerce_SSAS\obj\Development\Model.deploymentoptions
+C:\Users\EL11_gazy\source\repos\Ecommerce_SSAS\Ecommerce_SSAS\obj\Development\Model.deploymenttargets
