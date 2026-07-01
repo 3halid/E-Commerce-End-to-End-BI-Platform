@@ -1,0 +1,778 @@
+{
+  "name": "Ecommerce_SSAS",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "name": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce",
+        "connectionString": "Provider=SQLOLEDB;Data Source=DESKTOP-EEQM3AQ;Initial Catalog=DWH_E_Commerce;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateServiceAccount",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "DIM_category 1",
+        "columns": [
+          {
+            "name": "cat_id",
+            "dataType": "int64",
+            "sourceColumn": "cat_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "category",
+            "dataType": "string",
+            "sourceColumn": "category",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "sub_category",
+            "dataType": "string",
+            "sourceColumn": "sub_category",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_category 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DIM_category].*   FROM [dbo].[DIM_category] ",
+              "dataSource": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Distinct Count of sub_category",
+            "expression": "DISTINCTCOUNT([sub_category])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DIM_category].*   FROM [dbo].[DIM_category] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_category"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DIM_customer 1",
+        "columns": [
+          {
+            "name": "cus_id",
+            "dataType": "int64",
+            "sourceColumn": "cus_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "custimer_name",
+            "dataType": "string",
+            "sourceColumn": "custimer_name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "segment",
+            "dataType": "string",
+            "sourceColumn": "segment",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_customer 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DIM_customer].*   FROM [dbo].[DIM_customer] ",
+              "dataSource": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Customer Count",
+            "expression": "DISTINCTCOUNT([cus_id])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DIM_customer].*   FROM [dbo].[DIM_customer] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_customer"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DIM_Date 1",
+        "dataCategory": "Time",
+        "columns": [
+          {
+            "name": "Date_key",
+            "dataType": "int64",
+            "sourceColumn": "Date_key",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "isKey": true,
+            "sourceColumn": "Date",
+            "formatString": "General Date",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Month",
+            "dataType": "int64",
+            "sourceColumn": "Month",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Day",
+            "dataType": "int64",
+            "sourceColumn": "Day",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "int64",
+            "sourceColumn": "Quarter",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Day_Name",
+            "dataType": "string",
+            "sourceColumn": "Day_Name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Month_Name",
+            "dataType": "string",
+            "sourceColumn": "Month_Name",
+            "sortByColumn": "Month",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Day_Of_Week",
+            "dataType": "int64",
+            "sourceColumn": "Day_Of_Week",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Week_No",
+            "dataType": "int64",
+            "sourceColumn": "Week_No",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "is_weekend",
+            "dataType": "int64",
+            "sourceColumn": "is_weekend",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_Date 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DIM_Date].*   FROM [dbo].[DIM_Date] ",
+              "dataSource": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DIM_Date].*   FROM [dbo].[DIM_Date] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_Date"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DIM_location 1",
+        "columns": [
+          {
+            "name": "loc_id",
+            "dataType": "int64",
+            "sourceColumn": "loc_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "country",
+            "dataType": "string",
+            "sourceColumn": "country",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "state",
+            "dataType": "string",
+            "sourceColumn": "state",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "postalcode",
+            "dataType": "int64",
+            "sourceColumn": "postalcode",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_location 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DIM_location].*   FROM [dbo].[DIM_location] ",
+              "dataSource": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Distinct Count of country",
+            "expression": "DISTINCTCOUNT([country])"
+          },
+          {
+            "name": "Distinct Count of state",
+            "expression": "DISTINCTCOUNT([state])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DIM_location].*   FROM [dbo].[DIM_location] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_location"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DIM_market 1",
+        "columns": [
+          {
+            "name": "mar_id",
+            "dataType": "int64",
+            "sourceColumn": "mar_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "market",
+            "dataType": "string",
+            "sourceColumn": "market",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "region",
+            "dataType": "string",
+            "sourceColumn": "region",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "loc_id",
+            "dataType": "int64",
+            "sourceColumn": "loc_id",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_market 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DIM_market].*   FROM [dbo].[DIM_market] ",
+              "dataSource": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Distinct Count of market",
+            "expression": "DISTINCTCOUNT([market])"
+          },
+          {
+            "name": "Distinct Count of region",
+            "expression": "DISTINCTCOUNT([region])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DIM_market].*   FROM [dbo].[DIM_market] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_market"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DIM_order_priority 1",
+        "columns": [
+          {
+            "name": "order_id",
+            "dataType": "int64",
+            "sourceColumn": "order_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "order_priority",
+            "dataType": "string",
+            "sourceColumn": "order_priority",
+            "sortByColumn": "priority_value",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "priority_value",
+            "dataType": "int64",
+            "sourceColumn": "priority_value",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ship_mode",
+            "dataType": "string",
+            "sourceColumn": "ship_mode",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_order_priority 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DIM_order_priority].*   FROM [dbo].[DIM_order_priority] ",
+              "dataSource": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Order Count",
+            "expression": "DISTINCTCOUNT([order_id])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DIM_order_priority].*   FROM [dbo].[DIM_order_priority] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_order_priority"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DIM_product 1",
+        "columns": [
+          {
+            "name": "Pro_id",
+            "dataType": "int64",
+            "sourceColumn": "Pro_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "pro_name",
+            "dataType": "string",
+            "sourceColumn": "pro_name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "cat_id",
+            "dataType": "int64",
+            "sourceColumn": "cat_id",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DIM_product 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DIM_product].*   FROM [dbo].[DIM_product] ",
+              "dataSource": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "product Count",
+            "expression": "DISTINCTCOUNT([pro_name])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DIM_product].*   FROM [dbo].[DIM_product] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DIM_product"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "fact_table 1",
+        "columns": [
+          {
+            "name": "fact_id",
+            "dataType": "int64",
+            "sourceColumn": "fact_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "cat_id",
+            "dataType": "int64",
+            "sourceColumn": "cat_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Pro_id",
+            "dataType": "int64",
+            "sourceColumn": "Pro_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "loc_id",
+            "dataType": "int64",
+            "sourceColumn": "loc_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "mar_id",
+            "dataType": "int64",
+            "sourceColumn": "mar_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "order_id",
+            "dataType": "int64",
+            "sourceColumn": "order_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "cus_id",
+            "dataType": "int64",
+            "sourceColumn": "cus_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "shipping_cost",
+            "dataType": "double",
+            "sourceColumn": "shipping_cost",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "profit",
+            "dataType": "double",
+            "sourceColumn": "profit",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "discount",
+            "dataType": "double",
+            "sourceColumn": "discount",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "quantity",
+            "dataType": "int64",
+            "sourceColumn": "quantity",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "sales",
+            "dataType": "double",
+            "sourceColumn": "sales",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "Ship_Date_Key",
+            "dataType": "int64",
+            "sourceColumn": "Ship_Date_Key",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Order_Date_Key",
+            "dataType": "int64",
+            "sourceColumn": "Order_Date_Key",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "fact_table 1",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[fact_table].*   FROM [dbo].[fact_table] ",
+              "dataSource": "SqlServer DESKTOP-EEQM3AQ DWH_E_Commerce"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Sales",
+            "expression": "SUM([sales])"
+          },
+          {
+            "name": "Average of sales",
+            "expression": "AVERAGE([sales])"
+          },
+          {
+            "name": "profit Average",
+            "expression": "AVERAGE([profit])",
+            "kpi": {
+              "targetExpression": "'fact_table 1'[Average of sales]",
+              "statusExpression": [
+                "var x='fact_table 1'[profit Average]/'fact_table 1'[_profit Average Goal] return",
+                "            if(ISBLANK(x),BLANK(),",
+                "                    If(x<0.33,-1,",
+                "\t                If(x<0.66,0,1)",
+                "                )",
+                "            )",
+                "            "
+              ],
+              "annotations": [
+                {
+                  "name": "GoalType",
+                  "value": "Measure"
+                },
+                {
+                  "name": "KpiStatusType",
+                  "value": "Linear"
+                },
+                {
+                  "name": "KpiThresholdType",
+                  "value": "Percentage"
+                },
+                {
+                  "name": "KpiThresholdOrdering",
+                  "value": "Ascending"
+                },
+                {
+                  "name": "KpiThresholdCount",
+                  "value": "2"
+                },
+                {
+                  "name": "KpiThreshold_0",
+                  "value": "33"
+                },
+                {
+                  "name": "KpiThreshold_1",
+                  "value": "66"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Total Shipping Cost",
+            "expression": "SUM([shipping_cost])"
+          },
+          {
+            "name": "shipping_cost Average",
+            "expression": "AVERAGE([shipping_cost])",
+            "kpi": {
+              "targetExpression": "'fact_table 1'[Average of sales]",
+              "statusExpression": [
+                "var x='fact_table 1'[shipping_cost Average]/'fact_table 1'[_shipping_cost Average Goal] return",
+                "            if(ISBLANK(x),BLANK(),",
+                "                    If(x<0.33,-1,",
+                "\t                If(x<0.66,0,1)",
+                "                )",
+                "            )",
+                "            "
+              ],
+              "annotations": [
+                {
+                  "name": "GoalType",
+                  "value": "Measure"
+                },
+                {
+                  "name": "KpiStatusType",
+                  "value": "Linear"
+                },
+                {
+                  "name": "KpiThresholdType",
+                  "value": "Percentage"
+                },
+                {
+                  "name": "KpiThresholdOrdering",
+                  "value": "Ascending"
+                },
+                {
+                  "name": "KpiThresholdCount",
+                  "value": "2"
+                },
+                {
+                  "name": "KpiThreshold_0",
+                  "value": "33"
+                },
+                {
+                  "name": "KpiThreshold_1",
+                  "value": "66"
+                }
+              ]
+            }
+          },
+          {
+            "name": "Total Profit",
+            "expression": "SUM([profit])"
+          },
+          {
+            "name": "Sales Per Customer",
+            "expression": " [Total Sales]/[Customer Count]"
+          },
+          {
+            "name": "Profit Per Order",
+            "expression": "[Total Profit]/[Order Count]"
+          },
+          {
+            "name": "Profit Margin",
+            "expression": "[Total Profit]/[Total Sales]"
+          },
+          {
+            "name": "Sales This Month",
+            "expression": " TOTALMTD([Total Sales], 'DIM_Date 1'[Date])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[fact_table].*   FROM [dbo].[fact_table] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "fact_table"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "fc08931b-eea0-428d-837f-02ce94e4f4a4",
+        "fromTable": "fact_table 1",
+        "fromColumn": "Pro_id",
+        "toTable": "DIM_product 1",
+        "toColumn": "Pro_id"
+      },
+      {
+        "name": "046323ab-8469-446b-99d9-509c8ff7acd8",
+        "fromTable": "DIM_market 1",
+        "fromColumn": "loc_id",
+        "toTable": "DIM_location 1",
+        "toColumn": "loc_id"
+      },
+      {
+        "name": "27070acb-cbe9-4014-991e-444994d96aeb",
+        "fromTable": "fact_table 1",
+        "fromColumn": "mar_id",
+        "toTable": "DIM_market 1",
+        "toColumn": "mar_id"
+      },
+      {
+        "name": "382d7aaa-1088-4cfd-8f17-329a63134248",
+        "fromTable": "DIM_product 1",
+        "fromColumn": "cat_id",
+        "toTable": "DIM_category 1",
+        "toColumn": "cat_id"
+      },
+      {
+        "name": "c1df7a07-b19c-4f70-b9d6-2fb34f81bb1d",
+        "fromTable": "fact_table 1",
+        "fromColumn": "order_id",
+        "toTable": "DIM_order_priority 1",
+        "toColumn": "order_id"
+      },
+      {
+        "name": "ca0dea06-a7d1-4f22-b1a5-174064ad293c",
+        "fromTable": "fact_table 1",
+        "fromColumn": "cat_id",
+        "toTable": "DIM_customer 1",
+        "toColumn": "cus_id"
+      },
+      {
+        "name": "5c6751a8-865e-48dd-946f-6fb195c5bda0",
+        "fromTable": "fact_table 1",
+        "fromColumn": "Ship_Date_Key",
+        "toTable": "DIM_Date 1",
+        "toColumn": "Date_key",
+        "isActive": false
+      },
+      {
+        "name": "c64f1d2c-b567-462d-8adb-3329a92b7e99",
+        "fromTable": "fact_table 1",
+        "fromColumn": "Order_Date_Key",
+        "toTable": "DIM_Date 1",
+        "toColumn": "Date_key"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  }
+}
